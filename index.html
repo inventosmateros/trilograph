@@ -1,153 +1,425 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Trilograph | La Prensa Gráfica Portátil</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="landing is-preload">
 
-		<div id="page-wrapper">
+<head>
+	<title>Trilograph | La Prensa Gráfica Portátil</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<style>
+		.pricing-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+			gap: 20px;
+			margin-top: 40px;
+			text-align: left;
+		}
 
-		  <header id="header" class="alt">
-						<h1><a href="index.html">TRILOGRAPH</a></h1>
-						<nav id="nav">
+		.pricing-card {
+			background: rgba(255, 255, 255, 0.08);
+			border: 1px solid rgba(255, 255, 255, 0.15);
+			border-radius: 12px;
+			padding: 35px 20px 20px 20px;
+			position: relative;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			backdrop-filter: blur(5px);
+			display: flex;
+			flex-direction: column;
+		}
+
+		.pricing-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+			border-color: rgba(255, 255, 255, 0.4);
+		}
+
+		.card-badge {
+			position: absolute;
+			top: -14px;
+			left: 50%;
+			transform: translateX(-50%);
+			background: #ed4933;
+			color: white;
+			padding: 6px 14px;
+			border-radius: 20px;
+			font-size: 0.75em;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			white-space: nowrap;
+			z-index: 10;
+		}
+
+		.card-badge.mp-badge {
+			background: #009ee3;
+		}
+
+		.card-badge.wholesale-badge {
+			background: #28a745;
+		}
+
+		.card-badge.int-badge {
+			background: #6f42c1;
+		}
+
+		.pricing-card h3 {
+			font-size: 1.1em;
+			margin-bottom: 10px;
+			font-weight: 600;
+			text-align: center;
+			color: #fff;
+		}
+
+		.pricing-card .price {
+			text-align: center;
+			margin-bottom: 5px;
+		}
+
+		.pricing-card .old-price {
+			text-decoration: line-through;
+			color: #aaa;
+			font-size: 0.9em;
+			margin-right: 8px;
+		}
+
+		.pricing-card .new-price {
+			font-size: 1.6em;
+			font-weight: bold;
+			color: #fff;
+		}
+
+		.pricing-card .per-month {
+			font-size: 0.9em;
+			color: #aaa;
+		}
+
+		.pricing-card .shipping-info {
+			text-align: center;
+			font-size: 0.9em;
+			color: #ccc;
+			margin-bottom: 20px;
+		}
+
+		.pricing-card .card-details {
+			list-style: none;
+			padding: 0;
+			margin: 0 0 25px 0;
+			font-size: 0.85em;
+			color: #ddd;
+			flex-grow: 1;
+		}
+
+		.pricing-card .card-details li {
+			margin-bottom: 8px;
+			padding-left: 24px;
+			position: relative;
+		}
+
+		.pricing-card .card-details li::before {
+			content: "✓";
+			position: absolute;
+			left: 0;
+			color: #4CAF50;
+			font-weight: bold;
+		}
+
+		.pricing-card .button {
+			margin-bottom: 0;
+			font-size: 0.8em !important;
+			padding: 0 15px !important;
+			height: 3em !important;
+			line-height: 3em !important;
+		}
+
+		.pricing-card .button.alt {
+			box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3) !important;
+			color: #fff !important;
+		}
+
+		.pricing-card .button.alt:hover {
+			background-color: rgba(255, 255, 255, 0.1) !important;
+		}
+
+		.pricing-card .button.mp-button {
+			background-color: #009ee3 !important;
+			box-shadow: inset 0 0 0 2px #009ee3 !important;
+			color: #fff !important;
+		}
+
+		.pricing-card .button.mp-button:hover {
+			background-color: #007bc0 !important;
+			box-shadow: inset 0 0 0 2px #007bc0 !important;
+		}
+
+		.pricing-card .button.wholesale-button {
+			background-color: #28a745 !important;
+			box-shadow: inset 0 0 0 2px #28a745 !important;
+			color: #fff !important;
+		}
+
+		.pricing-card .button.wholesale-button:hover {
+			background-color: #218838 !important;
+			box-shadow: inset 0 0 0 2px #218838 !important;
+		}
+
+		.pricing-card .button.int-button {
+			background-color: #6f42c1 !important;
+			box-shadow: inset 0 0 0 2px #6f42c1 !important;
+			color: #fff !important;
+		}
+
+		.pricing-card .button.int-button:hover {
+			background-color: #5a32a3 !important;
+			box-shadow: inset 0 0 0 2px #5a32a3 !important;
+		}
+
+		@media screen and (max-width: 736px) {
+			.pricing-grid {
+				grid-template-columns: 1fr;
+				margin-top: 30px;
+				padding: 0 10px;
+			}
+		}
+	</style>
+</head>
+
+<body class="landing is-preload">
+
+	<div id="page-wrapper">
+
+		<header id="header" class="alt">
+			<h1><a href="index.html">TRILOGRAPH</a></h1>
+			<nav id="nav">
+				<ul>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
 							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="#banner">Inicio</a></li>
-											<li><a href="#two">Beneficios</a></li>
-											<li><a href="#three">Información</a></li>
-											<li><a href="#cta">Contacto</a></li>
-										</ul>
-									</div>
-								</li>
+								<li><a href="#banner">Inicio</a></li>
+								<li><a href="#two">Beneficios</a></li>
+								<li><a href="#three">Información</a></li>
+								<li><a href="#cta">Contacto</a></li>
 							</ul>
-						</nav>
-					</header>
-
-				<section id="banner">
-						<div class="inner">
-							<h2>TRILOGRAPH</h2>
-							<p>La prensa gráfica profesional <br>
-							que cabe en tu mochila. <br>
-							Democratizando el grabado profesional</p>
-							<ul class="actions special">
-							  <li><a href="https://wa.me/5491144756123?text=Hola!%20Quiero%20que%20me%20avisen%20para%20ser%20de%20los%20primeros%20en%20comprar%20el%20TRILOGRAPH" class="button primary">Quiero un descuento especial&nbsp; &nbsp; &nbsp;</a></li>
-						  </ul>
 						</div>
-						<a href="#one" class="more scrolly">Conocela</a>
-					</section>
+					</li>
+				</ul>
+			</nav>
+		</header>
 
-				<section id="one" class="wrapper style1 special">
-						<div class="inner">
-							<header class="major">
-								<h2>Tu estudio, donde la inspiración te encuentre.</h2>
-								<p>Ya no dependés de talleres costosos o equipos industriales gigantes. <br>
-							    Con TriloGraph, tu estudio está donde estés.</p>
-							</header>
-							<ul class="icons major">
-							  <li><span class="icon solid fa-palette major style1"><span class="label">Arte</span></span></li>
-							  <li><span class="icon solid fa-cogs major style2"><span class="label">Ingeniería</span></span></li>
-							  <li><span class="icon solid fa-hiking major style3"><span class="label">Portabilidad</span></span></li>
-						  </ul>
-				  </div>
-					</section>
-
-				<section id="two" class="wrapper alt style2">
-						<section class="spotlight">
-							<div class="image"><img src="images/pic01.jpg" alt="Prensa portátil" /></div><div class="content">
-							  <h2>Portabilidad Extrema y Libertad Creativa</h2>
-								<p><strong>Cabe en cualquier bolso o mochila</strong>. Diseñada para el artista moderno que necesita trabajar sin límites de espacio ni costos fijos. Llevá tu taller de grabado a tu mesa de cocina, un café o un parque.</p>
-							</div>
-						</section>
-						<section class="spotlight">
-							<div class="image"><img src="images/pic02.jpg" alt="Rodillos de precisión" /></div><div class="content">
-							  <h2>Precisión Profesional para Técnicas Clásicas</h2>
-								<p><strong>Compatibilidad total</strong>: Diseñada para estampar matrices de <strong>xilografía, aguafuerte y aguatinta</strong>. Sus rodillos metálicos garantizan la presión uniforme y la transferencia de tinta necesaria para un acabado de nivel profesional.</p>
-							</div>
-						</section>
-						<section class="spotlight">
-							<div class="image"><img src="images/pic03.jpg" alt="Diseño de producto" /></div><div class="content">
-							  <h2>Diseño Robusto y Estética Única</h2>
-								<p>Construida con materiales de primera calidad (madera barnizada y rodillos inoxidables) para garantizar la durabilidad. Su diseño minimalista y compacto no solo es funcional, sino que eleva tu espacio de trabajo, convirtiendo a TriloGraph en una herramienta de arte que también es una pieza de diseño.</p>
-							</div>
-						</section>
-		  </section>
-
-				<section id="three" class="wrapper style3 special">
-						<div class="inner">
-							<header class="major">
-								<h2>Expande tu Arte: Usos y Kit de Insumos</h2>
-								<p>Trilograph es más que una prensa; es la entrada a un ecosistema de herramientas para artistas y diseñadores que valoran la calidad y la eficiencia.</p>
-							</header>
-							<ul class="features">
-    <li class="icon solid fa-print">
-        <h3>Grabado de Autor</h3>
-        <p>Perfecta para tiradas cortas y medianas, muestras de color o piezas únicas. Ideal para artistas que venden su obra de forma directa.</p>
-    </li>
-    <li class="icon solid fa-fill-drip">
-        <h3>Insumos de Calidad</h3>
-        <p>Ofrecemos kits de insumos esenciales (gubias, tintura, rodillos) seleccionados por su calidad y compatibilidad para que empieces a crear de inmediato.</p>
-    </li>
-    <li class="icon solid fa-cubes">
-        <h3>Diseño 3D y Accesorios</h3>
-        <p>Accesorios de impresión 3D a la carta (soportes, marcos o guías) para optimizar el alineado y la repetición de tus grabados.</p>
-    </li>
-    <li class="icon solid fa-hand-rock">
-        <h3>Control Total de Presión</h3>
-        <p>El diseño manual te permite modular la presión para adaptarla a la matriz y el tipo de papel, logrando resultados únicos en cada pasada.</p>
-    </li>
-    <li class="icon solid fa-globe">
-        <h3>Soporte Multi-Superficie</h3>
-        <p>Imprime con alta fidelidad no solo en distintos tipos de papel, sino también en textiles y materiales no tradicionales (ej. cuero fino).</p>
-    </li>
-    <li class="icon solid fa-shield-alt">
-        <h3>Garantía y Durabilidad</h3>
-        <p>Construcción robusta en madera de alta calidad y rodillos de precisión para asegurar años de uso sin pérdida de rendimiento.</p>
-    </li>
-</ul>
+		<section id="banner">
+			<div class="inner">
+				<h2>TRILOGRAPH</h2>
+				<p>Grabado profesional, simple.<br>
+				</p>
+				<div class="pricing-grid">
+					<!-- Boton 1 -->
+					<div class="pricing-card">
+						<div class="card-badge">Oferta Lanzamiento</div>
+						<h3>Pago por transferencia</h3>
+						<div class="price">
+							<span class="old-price">$158.000</span>
+							<span class="new-price">$137.500</span>
 						</div>
-		  </section>
-
-		  <section id="cta" class="wrapper style4">
-						<div class="inner">
-							<header>
-								<h2>¡Acelera tu Proceso Creativo!</h2>
-								<p>Apoyá nuestra campaña de Crowdfunding .</p>
-							</header>
-							<ul class="actions stacked">
-							  <li><a href="#" class="button fit primary">muy pronto...</a></li>
-								<li><a href="https://wa.me/5491144756123?text=Hola!%20Quiero%20que%20me%20avisen%20para%20ser%20de%20los%20primeros%20en%20comprar%20el%20TRILOGRAPH" class="button fit">RESERVALO YA!&nbsp;&nbsp;</a></li>
-						  </ul>
-		    </div>
-		  </section>
-
-				<footer id="footer">
-						<ul class="icons">
-							<li><a href="https://instagram.com/trilograph" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="https://instagram.com/trilograph" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="https://instagram.com/trilograph" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="mailto:contacto@trilograph.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						<p class="shipping-info">Envío incluido</p>
+						<ul class="card-details">
+							<li>Exclusivo para Argentina</li>
+							<li>Entrega entre 7 y 30 días hábiles</li>
 						</ul>
-						<ul class="copyright">
-							<li>&copy; Trilograph.</li><li><a href="http://trilograph.com">&nbsp;por </a><a href="https://inventosargentinos.com">inventosargentinos.com</a><a href="https://inventosargentinos.com"></a></li>
-						</ul>
-					</footer>
+						<a href="https://wa.me/5491153147027?text=Quiero%20comprar%20el%20Trilograph%20con%20descuento%20de%20lanzamiento!%20Aguardo%20los%20datos%20para%20transferir."
+							target="_blank" class="button primary fit">Pago por transferencia</a>
+					</div>
 
+					<!-- Boton 2 -->
+					<div class="pricing-card">
+						<div class="card-badge mp-badge">MercadoPago</div>
+						<h3>3 Cuotas fijas</h3>
+						<div class="price">
+							<span class="new-price">$54.300</span>
+						</div>
+						<p class="shipping-info">Por MercadoPago</p>
+						<ul class="card-details">
+							<li>Exclusivo para Argentina</li>
+							<li>Entrega entre 7 y 30 días hábiles</li>
+						</ul>
+						<a href="https://mpago.li/1TrvxRW" target="_blank" class="button primary fit mp-button"
+							style="margin-bottom: 10px;">Ingresá al link para pagar</a>
+						<a href="https://wa.me/5491153147027?text=Hola,%20adjunto%20el%20comprobante%20de%20pago%20de%20MercadoPago."
+							target="_blank" class="button fit alt"
+							style="font-size: 0.7em !important; height: 2.5em !important; line-height: 2.5em !important;">Enviar
+							comprobante</a>
+					</div>
+
+					<!-- Boton 3 -->
+					<div class="pricing-card">
+						<div class="card-badge wholesale-badge">Mayorista</div>
+						<h3>Descuento Mayorista</h3>
+						<div class="price">
+							<span class="new-price">$595.500</span>
+						</div>
+						<p class="shipping-info">5 unidades</p>
+						<ul class="card-details">
+							<li>Exclusivo para Argentina</li>
+							<li>Entrega entre 7 y 30 días hábiles</li>
+						</ul>
+						<a href="https://wa.me/5491153147027?text=Hola,%20quiero%20el%20combo%20mayorista.%20Aguardo%20los%20datos%20bancarios."
+							target="_blank" class="button primary fit wholesale-button">Quiero el combo mayorista</a>
+					</div>
+
+					<!-- Boton 4 -->
+					<div class="pricing-card">
+						<div class="card-badge int-badge">Internacional</div>
+						<h3>Lista de espera</h3>
+						<div class="price" style="margin-top: 10px; margin-bottom: 10px;">
+							<span class="new-price" style="font-size: 1.3em;">Internacionales</span>
+						</div>
+						<p class="shipping-info">Envío a todo el mundo</p>
+						<ul class="card-details">
+							<li>Exclusivo para ventas al exterior</li>
+							<li>Entrega entre 20 y 45 días hábiles</li>
+						</ul>
+						<a href="https://wa.me/5491153147027?text=Vivo%20en%20el%20exterior%20y%20quiero%20anotarme%20para%20recibir%20un%20Trilograph."
+							target="_blank" class="button primary fit int-button">Anotarme para recibir</a>
+					</div>
+				</div>
 			</div>
 
-		<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		</section>
 
-	</body>
+		<section id="one" class="wrapper style1 special">
+			<div class="inner">
+				<header class="major">
+					<h2>Tu estudio, donde la inspiración te encuentre.</h2>
+					<p>Ya no dependés de talleres costosos o equipos industriales gigantes. <br>
+						Con TriloGraph, tu estudio está donde estés.</p>
+				</header>
+				<ul class="icons major">
+					<li><span class="icon solid fa-palette major style1"><span class="label">Arte</span></span></li>
+					<li><span class="icon solid fa-cogs major style2"><span class="label">Ingeniería</span></span></li>
+					<li><span class="icon solid fa-hiking major style3"><span class="label">Portabilidad</span></span>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section id="two" class="wrapper alt style2">
+			<section class="spotlight">
+				<div class="image"><img src="images/pic01.jpg" alt="Prensa portátil" /></div>
+				<div class="content">
+					<h2>Portabilidad Extrema y Libertad Creativa</h2>
+					<p><strong>Cabe en cualquier bolso o mochila</strong>. Diseñada para el artista moderno que necesita
+						trabajar sin límites de espacio ni costos fijos. Llevá tu taller de grabado a tu mesa de cocina,
+						un café o un parque.</p>
+				</div>
+			</section>
+			<section class="spotlight">
+				<div class="image"><img src="images/pic02.jpg" alt="Rodillos de precisión" /></div>
+				<div class="content">
+					<h2>Precisión Profesional para Técnicas Clásicas</h2>
+					<p><strong>Compatibilidad total</strong>: Diseñada para estampar matrices de <strong>xilografía,
+							aguafuerte y aguatinta</strong>. Sus rodillos metálicos garantizan la presión uniforme y la
+						transferencia de tinta necesaria para un acabado de nivel profesional.</p>
+				</div>
+			</section>
+			<section class="spotlight">
+				<div class="image"><img src="images/pic03.jpg" alt="Diseño de producto" /></div>
+				<div class="content">
+					<h2>Diseño Robusto y Estética Única</h2>
+					<p>Construida con materiales de primera calidad (madera barnizada y rodillos inoxidables) para
+						garantizar la durabilidad. Su diseño minimalista y compacto no solo es funcional, sino que eleva
+						tu espacio de trabajo, convirtiendo a TriloGraph en una herramienta de arte que también es una
+						pieza de diseño.</p>
+				</div>
+			</section>
+		</section>
+
+		<section id="three" class="wrapper style3 special">
+			<div class="inner">
+				<header class="major">
+					<h2>Expande tu Arte: Usos y Kit de Insumos</h2>
+					<p>Trilograph es más que una prensa; es la entrada a un ecosistema de herramientas para artistas y
+						diseñadores que valoran la calidad y la eficiencia.</p>
+				</header>
+				<ul class="features">
+					<li class="icon solid fa-print">
+						<h3>Grabado de Autor</h3>
+						<p>Perfecta para tiradas cortas y medianas, muestras de color o piezas únicas. Ideal para
+							artistas que venden su obra de forma directa.</p>
+					</li>
+					<li class="icon solid fa-fill-drip">
+						<h3>Insumos de Calidad</h3>
+						<p>Ofrecemos kits de insumos esenciales (gubias, tintura, rodillos) seleccionados por su calidad
+							y compatibilidad para que empieces a crear de inmediato.</p>
+					</li>
+					<li class="icon solid fa-cubes">
+						<h3>Diseño 3D y Accesorios</h3>
+						<p>Accesorios de impresión 3D a la carta (soportes, marcos o guías) para optimizar el alineado y
+							la repetición de tus grabados.</p>
+					</li>
+					<li class="icon solid fa-hand-rock">
+						<h3>Control Total de Presión</h3>
+						<p>El diseño manual te permite modular la presión para adaptarla a la matriz y el tipo de papel,
+							logrando resultados únicos en cada pasada.</p>
+					</li>
+					<li class="icon solid fa-globe">
+						<h3>Soporte Multi-Superficie</h3>
+						<p>Imprime con alta fidelidad no solo en distintos tipos de papel, sino también en textiles y
+							materiales no tradicionales (ej. cuero fino).</p>
+					</li>
+					<li class="icon solid fa-shield-alt">
+						<h3>Garantía y Durabilidad</h3>
+						<p>Construcción robusta en madera de alta calidad y rodillos de precisión para asegurar años de
+							uso sin pérdida de rendimiento.</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section id="cta" class="wrapper style4">
+			<div class="inner">
+				<header>
+					<h2>¡Acelera tu Proceso Creativo!</h2>
+					<p>Reservá el tuyo ahora mismo.</p>
+				</header>
+				<ul class="actions stacked">
+					<li><a href="#" class="button fit primary">muy pronto...</a></li>
+					<li><a href="https://wa.me/5491153147027?text=Hola!%20Quiero%20que%20me%20avisen%20para%20ser%20de%20los%20primeros%20en%20comprar%20el%20TRILOGRAPH"
+							class="button fit">RESERVALO YA!&nbsp;&nbsp;</a></li>
+				</ul>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://instagram.com/trilograph" class="icon brands fa-twitter"><span
+							class="label">Twitter</span></a></li>
+				<li><a href="https://instagram.com/trilograph" class="icon brands fa-facebook-f"><span
+							class="label">Facebook</span></a></li>
+				<li><a href="https://instagram.com/trilograph" class="icon brands fa-instagram"><span
+							class="label">Instagram</span></a></li>
+				<li><a href="mailto:contacto@trilograph.com" class="icon solid fa-envelope"><span
+							class="label">Email</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; Trilograph.</li>
+				<li><a href="http://trilograph.com">&nbsp;por </a><a
+						href="https://inventosargentinos.com">inventosargentinos.com</a><a
+						href="https://inventosargentinos.com"></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
 </html>
