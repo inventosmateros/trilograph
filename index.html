@@ -183,6 +183,110 @@
 				padding: 0 10px;
 			}
 		}
+
+		/* Language switcher styles */
+		.lang-switcher {
+			display: flex !important;
+			align-items: center;
+			margin-right: 1.5em;
+			white-space: nowrap;
+			height: 3em; 
+			vertical-align: middle;
+		}
+		.lang-switcher a {
+			color: rgba(255, 255, 255, 0.5) !important;
+			text-decoration: none;
+			font-weight: 600;
+			cursor: pointer;
+			transition: color 0.3s ease;
+			border-bottom: none !important;
+			padding: 0 5px !important;
+			line-height: inherit !important;
+			font-size: 0.8em !important;
+			letter-spacing: 0.225em !important;
+			text-transform: uppercase;
+		}
+		.lang-switcher a.active {
+			color: #fff !important;
+		}
+		.lang-separator {
+			color: rgba(255, 255, 255, 0.2);
+			font-size: 0.8em;
+			margin: 0 2px;
+		}
+		/* Nav container flex */
+		#nav {
+			display: flex !important;
+			align-items: center;
+			justify-content: flex-end;
+		}
+		#nav > ul {
+			margin: 0 !important;
+			padding: 0 !important;
+			display: flex !important;
+			align-items: center;
+		}
+		#nav > ul > li {
+			list-style: none !important;
+			display: block !important;
+			padding: 0 !important;
+		}
+
+		/* Visibility logic */
+		body.lang-es .en-only { display: none !important; }
+		body.lang-en .es-only { display: none !important; }
+
+		/* Countdown Timer styles */
+		.kickstarter-banner {
+			margin-top: 40px;
+			padding: 40px;
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 20px;
+			backdrop-filter: blur(10px);
+		}
+		.countdown-container {
+			display: flex;
+			justify-content: center;
+			gap: 30px;
+			margin: 30px 0;
+		}
+		.countdown-item {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.countdown-item .number {
+			font-size: 3em;
+			font-weight: 800;
+			line-height: 1;
+			color: #fff;
+		}
+		.countdown-item .label {
+			font-size: 0.8em;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			color: #aaa;
+			margin-top: 10px;
+		}
+		.kickstarter-btn {
+			font-weight: 800 !important;
+			letter-spacing: 2px !important;
+			padding: 0 3em !important;
+			height: 4em !important;
+			line-height: 4em !important;
+			background-color: #05ce78 !important; /* Kickstarter Green */
+			box-shadow: inset 0 0 0 2px #05ce78 !important;
+		}
+		.kickstarter-btn:hover {
+			background-color: #04b368 !important;
+		}
+		.global-phrase {
+			font-size: 1.5em;
+			font-style: italic;
+			color: #eee;
+			margin-top: 1em;
+		}
 	</style>
 </head>
 
@@ -193,15 +297,20 @@
 		<header id="header" class="alt">
 			<h1><a href="index.html">TRILOGRAPH</a></h1>
 			<nav id="nav">
+				<div class="lang-switcher">
+					<a onclick="setLanguage('es')">ES</a>
+					<span class="lang-separator">|</span>
+					<a onclick="setLanguage('en')">EN</a>
+				</div>
 				<ul>
 					<li class="special">
 						<a href="#menu" class="menuToggle"><span>Menu</span></a>
 						<div id="menu">
 							<ul>
-								<li><a href="#banner">Inicio</a></li>
-								<li><a href="#two">Beneficios</a></li>
-								<li><a href="#three">Información</a></li>
-								<li><a href="#cta">Contacto</a></li>
+								<li><a href="#banner" class="es-only">Inicio</a><a href="#banner" class="en-only">Home</a></li>
+								<li><a href="#two" class="es-only">Beneficios</a><a href="#two" class="en-only">Benefits</a></li>
+								<li><a href="#three" class="es-only">Información</a><a href="#three" class="en-only">Information</a></li>
+								<li><a href="#cta" class="es-only">Contacto</a><a href="#cta" class="en-only">Contact</a></li>
 							</ul>
 						</div>
 					</li>
@@ -212,9 +321,10 @@
 		<section id="banner">
 			<div class="inner">
 				<h2>TRILOGRAPH</h2>
-				<p>Grabado profesional, simple.<br>
-				</p>
-				<div class="pricing-grid">
+				<p class="es-only">Grabado profesional, simple.<br></p>
+				<p class="en-only">Professional printmaking, simplified.<br></p>
+
+				<div class="pricing-grid es-only">
 					<!-- Boton 1 -->
 					<div class="pricing-card">
 						<div class="card-badge">Oferta Lanzamiento</div>
@@ -284,6 +394,15 @@
 							target="_blank" class="button primary fit int-button">Anotarme para recibir</a>
 					</div>
 				</div>
+
+				<!-- English Kickstarter Section -->
+				<div class="kickstarter-banner en-only">
+					<p class="global-phrase">Trilograph goes global... soon.</p>
+					<div id="countdown" class="countdown-container">
+						<!-- JS Populated -->
+					</div>
+					<a href="https://www.kickstarter.com/projects/trilograph" target="_blank" class="button primary large kickstarter-btn">SUPPORT US ON KICKSTARTER</a>
+				</div>
 			</div>
 
 		</section>
@@ -291,15 +410,17 @@
 		<section id="one" class="wrapper style1 special">
 			<div class="inner">
 				<header class="major">
-					<h2>Tu estudio, donde la inspiración te encuentre.</h2>
-					<p>Ya no dependés de talleres costosos o equipos industriales gigantes. <br>
+					<h2 class="es-only">Tu estudio, donde la inspiración te encuentre.</h2>
+					<h2 class="en-only">Your studio, wherever inspiration finds you.</h2>
+					<p class="es-only">Ya no dependés de talleres costosos o equipos industriales gigantes. <br>
 						Con TriloGraph, tu estudio está donde estés.</p>
+					<p class="en-only">No longer dependent on expensive workshops or giant industrial equipment. <br>
+						With TriloGraph, your studio is wherever you are.</p>
 				</header>
 				<ul class="icons major">
 					<li><span class="icon solid fa-palette major style1"><span class="label">Arte</span></span></li>
 					<li><span class="icon solid fa-cogs major style2"><span class="label">Ingeniería</span></span></li>
-					<li><span class="icon solid fa-hiking major style3"><span class="label">Portabilidad</span></span>
-					</li>
+					<li><span class="icon solid fa-hiking major style3"><span class="label">Portabilidad</span></span></li>
 				</ul>
 			</div>
 		</section>
@@ -308,29 +429,42 @@
 			<section class="spotlight">
 				<div class="image"><img src="images/pic01.jpg" alt="Prensa portátil" /></div>
 				<div class="content">
-					<h2>Portabilidad Extrema y Libertad Creativa</h2>
-					<p><strong>Cabe en cualquier bolso o mochila</strong>. Diseñada para el artista moderno que necesita
+					<h2 class="es-only">Portabilidad Extrema y Libertad Creativa</h2>
+					<h2 class="en-only">Extreme Portability and Creative Freedom</h2>
+					<p class="es-only"><strong>Cabe en cualquier bolso o mochila</strong>. Diseñada para el artista moderno que necesita
 						trabajar sin límites de espacio ni costos fijos. Llevá tu taller de grabado a tu mesa de cocina,
 						un café o un parque.</p>
+					<p class="en-only"><strong>Fits in any bag or backpack</strong>. Designed for the modern artist who needs to 
+						work without space limits or fixed costs. Take your printmaking studio to your kitchen table, 
+						a coffee shop, or a park.</p>
 				</div>
 			</section>
 			<section class="spotlight">
 				<div class="image"><img src="images/pic02.jpg" alt="Rodillos de precisión" /></div>
 				<div class="content">
-					<h2>Precisión Profesional para Técnicas Clásicas</h2>
-					<p><strong>Compatibilidad total</strong>: Diseñada para estampar matrices de <strong>xilografía,
+					<h2 class="es-only">Precisión Profesional para Técnicas Clásicas</h2>
+					<h2 class="en-only">Professional Precision for Classic Techniques</h2>
+					<p class="es-only"><strong>Compatibilidad total</strong>: Diseñada para estampar matrices de <strong>xilografía,
 							aguafuerte y aguatinta</strong>. Sus rodillos metálicos garantizan la presión uniforme y la
 						transferencia de tinta necesaria para un acabado de nivel profesional.</p>
+					<p class="en-only"><strong>Total compatibility</strong>: Designed for printing matrices of <strong>woodcut, 
+						etching, and aquatint</strong>. Its metal rollers guarantee uniform pressure and the 
+						ink transfer necessary for a professional-level finish.</p>
 				</div>
 			</section>
 			<section class="spotlight">
 				<div class="image"><img src="images/pic03.jpg" alt="Diseño de producto" /></div>
 				<div class="content">
-					<h2>Diseño Robusto y Estética Única</h2>
-					<p>Construida con materiales de primera calidad (madera barnizada y rodillos inoxidables) para
+					<h2 class="es-only">Diseño Robusto y Estética Única</h2>
+					<h2 class="en-only">Robust Design and Unique Aesthetics</h2>
+					<p class="es-only">Construida con materiales de primera calidad (madera barnizada y rodillos inoxidables) para
 						garantizar la durabilidad. Su diseño minimalista y compacto no solo es funcional, sino que eleva
 						tu espacio de trabajo, convirtiendo a TriloGraph en una herramienta de arte que también es una
 						pieza de diseño.</p>
+					<p class="en-only">Built with premium materials (varnished wood and stainless rollers) to 
+						ensure durability. Its minimalist and compact design is not only functional but also 
+						elevates your workspace, turning TriloGraph into an art tool that is also a 
+						design piece.</p>
 				</div>
 			</section>
 		</section>
@@ -338,40 +472,61 @@
 		<section id="three" class="wrapper style3 special">
 			<div class="inner">
 				<header class="major">
-					<h2>Expande tu Arte: Usos y Kit de Insumos</h2>
-					<p>Trilograph es más que una prensa; es la entrada a un ecosistema de herramientas para artistas y
+					<h2 class="es-only">Expande tu Arte: Usos y Kit de Insumos</h2>
+					<h2 class="en-only">Expand Your Art: Uses and Supplies Kit</h2>
+					<p class="es-only">Trilograph es más que una prensa; es la entrada a un ecosistema de herramientas para artistas y
 						diseñadores que valoran la calidad y la eficiencia.</p>
+					<p class="en-only">Trilograph is more than just a press; it is the entry point to an ecosystem of tools for artists and 
+						designers who value quality and efficiency.</p>
 				</header>
 				<ul class="features">
 					<li class="icon solid fa-print">
-						<h3>Grabado de Autor</h3>
-						<p>Perfecta para tiradas cortas y medianas, muestras de color o piezas únicas. Ideal para
+						<h3 class="es-only">Grabado de Autor</h3>
+						<h3 class="en-only">Author's Printmaking</h3>
+						<p class="es-only">Perfecta para tiradas cortas y medianas, muestras de color o piezas únicas. Ideal para
 							artistas que venden su obra de forma directa.</p>
+						<p class="en-only">Perfect for short and medium runs, color samples, or unique pieces. Ideal for 
+							artists who sell their work directly.</p>
 					</li>
 					<li class="icon solid fa-fill-drip">
-						<h3>Insumos de Calidad</h3>
-						<p>Ofrecemos kits de insumos esenciales (gubias, tintura, rodillos) seleccionados por su calidad
+						<h3 class="es-only">Insumos de Calidad</h3>
+						<h3 class="en-only">Quality Supplies</h3>
+						<p class="es-only">Ofrecemos kits de insumos esenciales (gubias, tintura, rodillos) seleccionados por su calidad
 							y compatibilidad para que empieces a crear de inmediato.</p>
+						<p class="en-only">We offer essential supply kits (gouges, ink, rollers) selected for their quality 
+							and compatibility so you can start creating immediately.</p>
 					</li>
 					<li class="icon solid fa-cubes">
-						<h3>Diseño 3D y Accesorios</h3>
-						<p>Accesorios de impresión 3D a la carta (soportes, marcos o guías) para optimizar el alineado y
+						<h3 class="es-only">Diseño 3D y Accesorios</h3>
+						<h3 class="en-only">3D Design and Accessories</h3>
+						<p class="es-only">Accesorios de impresión 3D a la carta (soportes, marcos o guías) para optimizar el alineado y
 							la repetición de tus grabados.</p>
+						<p class="en-only">On-demand 3D printed accessories (supports, frames, or guides) to optimize the alignment and 
+							repetition of your prints.</p>
 					</li>
 					<li class="icon solid fa-hand-rock">
-						<h3>Control Total de Presión</h3>
-						<p>El diseño manual te permite modular la presión para adaptarla a la matriz y el tipo de papel,
+						<h3 class="es-only">Control Total de Presión</h3>
+						<h3 class="en-only">Total Pressure Control</h3>
+						<p class="es-only">El diseño manual te permite modular la presión para adaptarla a la matriz y el tipo de papel,
 							logrando resultados únicos en cada pasada.</p>
+						<p class="en-only">The manual design allows you to modulate the pressure to adapt it to the matrix and the type of paper, 
+							achieving unique results in every pass.</p>
 					</li>
 					<li class="icon solid fa-globe">
-						<h3>Soporte Multi-Superficie</h3>
-						<p>Imprime con alta fidelidad no solo en distintos tipos de papel, sino también en textiles y
+						<h3 class="es-only">Soporte Multi-Superficie</h3>
+						<h3 class="en-only">Multi-Surface Support</h3>
+						<p class="es-only">Imprime con alta fidelidad no solo en distintos tipos de papel, sino también en textiles y
 							materiales no tradicionales (ej. cuero fino).</p>
+						<p class="en-only">Print with high fidelity not only on different types of paper but also on textiles and 
+							non-traditional materials (e.g., thin leather).</p>
 					</li>
 					<li class="icon solid fa-shield-alt">
-						<h3>Garantía y Durabilidad</h3>
-						<p>Construcción robusta en madera de alta calidad y rodillos de precisión para asegurar años de
+						<h3 class="es-only">Garantía y Durabilidad</h3>
+						<h3 class="en-only">Warranty and Durability</h3>
+						<p class="es-only">Construcción robusta en madera de alta calidad y rodillos de precisión para asegurar años de
 							uso sin pérdida de rendimiento.</p>
+						<p class="en-only">Robust construction in high-quality wood and precision rollers to ensure years of 
+							use without loss of performance.</p>
 					</li>
 				</ul>
 			</div>
@@ -380,33 +535,30 @@
 		<section id="cta" class="wrapper style4">
 			<div class="inner">
 				<header>
-					<h2>¡Acelera tu Proceso Creativo!</h2>
-					<p>Reservá el tuyo ahora mismo.</p>
+					<h2 class="es-only">¡Acelera tu Proceso Creativo!</h2>
+					<h2 class="en-only">Accelerate Your Creative Process!</h2>
+					<p class="es-only">Reservá el tuyo ahora mismo.</p>
+					<p class="en-only">Reserve yours right now.</p>
 				</header>
 				<ul class="actions stacked">
-					<li><a href="#" class="button fit primary">muy pronto...</a></li>
+					<li><a href="#" class="button fit primary"><span class="es-only">muy pronto...</span><span class="en-only">coming soon...</span></a></li>
 					<li><a href="https://wa.me/5491153147027?text=Hola!%20Quiero%20que%20me%20avisen%20para%20ser%20de%20los%20primeros%20en%20comprar%20el%20TRILOGRAPH"
-							class="button fit">RESERVALO YA!&nbsp;&nbsp;</a></li>
+							class="button fit"><span class="es-only">RESERVALO YA!&nbsp;&nbsp;</span><span class="en-only">RESERVE NOW!&nbsp;&nbsp;</span></a></li>
 				</ul>
 			</div>
 		</section>
 
 		<footer id="footer">
 			<ul class="icons">
-				<li><a href="https://instagram.com/trilograph" class="icon brands fa-twitter"><span
-							class="label">Twitter</span></a></li>
-				<li><a href="https://instagram.com/trilograph" class="icon brands fa-facebook-f"><span
-							class="label">Facebook</span></a></li>
-				<li><a href="https://instagram.com/trilograph" class="icon brands fa-instagram"><span
-							class="label">Instagram</span></a></li>
-				<li><a href="mailto:contacto@trilograph.com" class="icon solid fa-envelope"><span
-							class="label">Email</span></a></li>
+				<li><a href="https://instagram.com/trilograph" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="https://instagram.com/trilograph" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="https://instagram.com/trilograph" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="mailto:contacto@trilograph.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 			</ul>
 			<ul class="copyright">
 				<li>&copy; Trilograph.</li>
-				<li><a href="http://trilograph.com">&nbsp;por </a><a
-						href="https://inventosargentinos.com">inventosargentinos.com</a><a
-						href="https://inventosargentinos.com"></a></li>
+				<li><a href="http://trilograph.com">&nbsp;<span class="es-only">por</span><span class="en-only">by</span> </a><a
+						href="https://inventosargentinos.com">inventosargentinos.com</a></li>
 			</ul>
 		</footer>
 
@@ -419,6 +571,7 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script src="assets/js/i18n.js"></script>
 
 </body>
 
