@@ -9,6 +9,7 @@
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/css/intlTelInput.css">
 	<style>
 		.pricing-grid {
 			display: grid;
@@ -410,6 +411,39 @@
 			margin-top: 4px;
 			display: block;
 		}
+
+		/* intl-tel-input overrides */
+		.iti {
+			width: 100%;
+		}
+
+		.iti__country-list {
+			background-color: #2e3842 !important;
+			border: 1px solid rgba(255, 255, 255, 0.2) !important;
+			color: #fff !important;
+		}
+
+		.iti__country {
+			padding: 10px !important;
+		}
+
+		.iti__country:hover,
+		.iti__country.iti__highlight {
+			background-color: rgba(255, 255, 255, 0.1) !important;
+		}
+
+		.iti__selected-dial-code {
+			color: #fff !important;
+			margin-left: 5px;
+		}
+
+		.iti__arrow {
+			border-top-color: #888 !important;
+		}
+
+		.iti__arrow--up {
+			border-bottom-color: #888 !important;
+		}
 	</style>
 </head>
 
@@ -772,9 +806,37 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/i18n.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/js/intlTelInput.min.js"></script>
 	<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
 	<script type="text/javascript">
 		(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[4] = 'PHONE'; ftypes[4] = 'phone'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'ADDRESS'; ftypes[3] = 'address'; fnames[5] = 'BIRTHDAY'; ftypes[5] = 'birthday'; fnames[6] = 'COMPANY'; ftypes[6] = 'text'; }(jQuery)); var $mcj = jQuery.noConflict(true);
+
+		// Initialize International Telephone Input
+		document.addEventListener('DOMContentLoaded', function () {
+			const phoneInput = document.querySelector("#mce-PHONE");
+			if (phoneInput) {
+				const iti = window.intlTelInput(phoneInput, {
+					initialCountry: "auto",
+					separateDialCode: true,
+					geoIpLookup: function (callback) {
+						fetch("https://ipapi.co/json")
+							.then(res => res.json())
+							.then(data => callback(data.country_code))
+							.catch(() => callback("ar"));
+					},
+					utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/js/utils.js"
+				});
+
+				// Before submit, ensure the hidden field or the field itself has the full number if needed
+				// Mailchimp phone fields can be tricky, but usually they just want the string.
+				// We'll update the field to the full number on blur to be safe.
+				phoneInput.addEventListener('blur', function() {
+					if (iti.isValidNumber()) {
+						phoneInput.value = iti.getNumber();
+					}
+				});
+			}
+		});
 	</script>
 </body>
 
