@@ -190,9 +190,10 @@
 			align-items: center;
 			margin-right: 1.5em;
 			white-space: nowrap;
-			height: 3em; 
+			height: 3em;
 			vertical-align: middle;
 		}
+
 		.lang-switcher a {
 			color: rgba(255, 255, 255, 0.5) !important;
 			text-decoration: none;
@@ -206,35 +207,45 @@
 			letter-spacing: 0.225em !important;
 			text-transform: uppercase;
 		}
+
 		.lang-switcher a.active {
 			color: #fff !important;
 		}
+
 		.lang-separator {
 			color: rgba(255, 255, 255, 0.2);
 			font-size: 0.8em;
 			margin: 0 2px;
 		}
+
 		/* Nav container flex */
 		#nav {
 			display: flex !important;
 			align-items: center;
 			justify-content: flex-end;
 		}
-		#nav > ul {
+
+		#nav>ul {
 			margin: 0 !important;
 			padding: 0 !important;
 			display: flex !important;
 			align-items: center;
 		}
-		#nav > ul > li {
+
+		#nav>ul>li {
 			list-style: none !important;
 			display: block !important;
 			padding: 0 !important;
 		}
 
 		/* Visibility logic */
-		body.lang-es .en-only { display: none !important; }
-		body.lang-en .es-only { display: none !important; }
+		body.lang-es .en-only {
+			display: none !important;
+		}
+
+		body.lang-en .es-only {
+			display: none !important;
+		}
 
 		/* Countdown Timer styles */
 		.kickstarter-banner {
@@ -245,23 +256,27 @@
 			border-radius: 20px;
 			backdrop-filter: blur(10px);
 		}
+
 		.countdown-container {
 			display: flex;
 			justify-content: center;
 			gap: 30px;
 			margin: 30px 0;
 		}
+
 		.countdown-item {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 		}
+
 		.countdown-item .number {
 			font-size: 3em;
 			font-weight: 800;
 			line-height: 1;
 			color: #fff;
 		}
+
 		.countdown-item .label {
 			font-size: 0.8em;
 			text-transform: uppercase;
@@ -269,23 +284,131 @@
 			color: #aaa;
 			margin-top: 10px;
 		}
+
 		.kickstarter-btn {
 			font-weight: 800 !important;
 			letter-spacing: 2px !important;
 			padding: 0 3em !important;
 			height: 4em !important;
 			line-height: 4em !important;
-			background-color: #05ce78 !important; /* Kickstarter Green */
+			background-color: #05ce78 !important;
+			/* Kickstarter Green */
 			box-shadow: inset 0 0 0 2px #05ce78 !important;
 		}
+
 		.kickstarter-btn:hover {
 			background-color: #04b368 !important;
 		}
+
+		/* Fix for banner height with large form */
+		#banner {
+			height: auto !important;
+			min-height: 100vh;
+			padding: 10em 2em 8em 2em !important;
+			display: flex !important;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			overflow: visible !important;
+		}
+
+		@media screen and (max-width: 736px) {
+			#banner {
+				padding: 7em 1em 5em 1em !important;
+			}
+		}
+
 		.global-phrase {
 			font-size: 1.5em;
 			font-style: italic;
 			color: #eee;
 			margin-top: 1em;
+		}
+
+		/* Mailchimp Form Custom Styles */
+		#mc_embed_signup {
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 15px;
+			padding: 30px;
+			margin: 40px auto 0;
+			max-width: 600px;
+			text-align: left;
+			backdrop-filter: blur(10px);
+		}
+
+		#mc_embed_signup h2 {
+			font-size: 1.5em;
+			font-weight: 800;
+			margin-bottom: 10px;
+			text-align: center;
+			color: #fff;
+			letter-spacing: 1px;
+		}
+
+		#mc_embed_signup .form-description {
+			text-align: center;
+			font-size: 0.9em;
+			color: #ccc;
+			margin-bottom: 25px;
+			line-height: 1.4;
+		}
+
+		#mc_embed_signup .mc-field-group {
+			margin-bottom: 15px;
+		}
+
+		#mc_embed_signup label {
+			display: block;
+			font-size: 0.8em;
+			font-weight: 600;
+			margin-bottom: 5px;
+			color: #aaa;
+			text-transform: uppercase;
+		}
+
+		#mc_embed_signup input[type="email"],
+		#mc_embed_signup input[type="text"] {
+			background: rgba(255, 255, 255, 0.08);
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			border-radius: 6px;
+			color: #fff;
+			width: 100%;
+			padding: 10px 15px;
+		}
+
+		#mc_embed_signup input[type="submit"] {
+			width: 100%;
+			margin-top: 10px;
+			background-color: #ed4933 !important;
+			color: white !important;
+			border: none;
+			height: 3.5em;
+			font-weight: 700;
+			letter-spacing: 2px;
+			transition: background 0.3s ease;
+		}
+
+		#mc_embed_signup input[type="submit"]:hover {
+			background-color: #ef5a46 !important;
+		}
+
+		#mc_embed_signup .asterisk {
+			color: #ed4933;
+		}
+
+		#mc_embed_signup .indicates-required {
+			font-size: 0.7em;
+			text-align: right;
+			margin-bottom: 10px;
+			color: #888;
+		}
+
+		#mc_embed_signup .helper_text {
+			font-size: 0.7em;
+			color: #777;
+			margin-top: 4px;
+			display: block;
 		}
 	</style>
 </head>
@@ -307,10 +430,14 @@
 						<a href="#menu" class="menuToggle"><span>Menu</span></a>
 						<div id="menu">
 							<ul>
-								<li><a href="#banner" class="es-only">Inicio</a><a href="#banner" class="en-only">Home</a></li>
-								<li><a href="#two" class="es-only">Beneficios</a><a href="#two" class="en-only">Benefits</a></li>
-								<li><a href="#three" class="es-only">Información</a><a href="#three" class="en-only">Information</a></li>
-								<li><a href="#cta" class="es-only">Contacto</a><a href="#cta" class="en-only">Contact</a></li>
+								<li><a href="#banner" class="es-only">Inicio</a><a href="#banner"
+										class="en-only">Home</a></li>
+								<li><a href="#two" class="es-only">Beneficios</a><a href="#two"
+										class="en-only">Benefits</a></li>
+								<li><a href="#three" class="es-only">Información</a><a href="#three"
+										class="en-only">Information</a></li>
+								<li><a href="#cta" class="es-only">Contacto</a><a href="#cta"
+										class="en-only">Contact</a></li>
 							</ul>
 						</div>
 					</li>
@@ -323,6 +450,53 @@
 				<h2>TRILOGRAPH</h2>
 				<p class="es-only">Grabado profesional, simple.<br></p>
 				<p class="en-only">Professional printmaking, simplified.<br></p>
+
+				<!-- Mailchimp Form -->
+				<div id="mc_embed_signup">
+					<form
+						action="https://gmail.us20.list-manage.com/subscribe/post?u=d724aac69ed6ca82c1f849be9&amp;id=42b43835bf&amp;f_id=006c68e0f0"
+						method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+						target="_blank">
+						<div id="mc_embed_signup_scroll">
+							<h2>KICKSTARTER VIP WAITING LIST</h2>
+							<p class="form-description">We will let you know 15 minutes before we launch the campaign so
+								you can get one of the first units with extra discount.</p>
+
+							<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+
+							<div class="mc-field-group">
+								<label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+								<input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required=""
+									value="">
+							</div>
+							<div class="mc-field-group">
+								<label for="mce-FNAME">First Name</label>
+								<input type="text" name="FNAME" class="text" id="mce-FNAME" value="">
+							</div>
+							<div class="mc-field-group">
+								<label for="mce-PHONE">Whatsapp</label>
+								<input type="text" name="PHONE" class="REQ_CSS" id="mce-PHONE" value="">
+								<span id="mce-PHONE-HELPERTEXT" class="helper_text">Country code + full number</span>
+							</div>
+
+							<div id="mce-responses" class="clear foot">
+								<div class="response" id="mce-error-response" style="display: none;"></div>
+								<div class="response" id="mce-success-response" style="display: none;"></div>
+							</div>
+
+							<div aria-hidden="true" style="position: absolute; left: -5000px;">
+								<input type="text" name="b_d724aac69ed6ca82c1f849be9_42b43835bf" tabindex="-1" value="">
+							</div>
+
+							<div class="optionalParent">
+								<div class="clear foot">
+									<input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button"
+										value="SUBSCRIBE">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
 
 				<div class="pricing-grid es-only">
 					<!-- Boton 1 -->
@@ -390,8 +564,7 @@
 							<li>Exclusivo para ventas al exterior</li>
 							<li>Entrega entre 20 y 45 días hábiles</li>
 						</ul>
-						<a href="https://wa.me/5491153147027?text=Vivo%20en%20el%20exterior%20y%20quiero%20anotarme%20para%20recibir%20un%20Trilograph."
-							target="_blank" class="button primary fit int-button">Anotarme para recibir</a>
+						<a href="#banner" class="button primary fit int-button scrolly">Anotarme en la lista VIP</a>
 					</div>
 				</div>
 
@@ -401,7 +574,7 @@
 					<div id="countdown" class="countdown-container">
 						<!-- JS Populated -->
 					</div>
-					<a href="https://www.kickstarter.com/projects/trilograph" target="_blank" class="button primary large kickstarter-btn">SUPPORT US ON KICKSTARTER</a>
+					<a href="#banner" class="button primary large kickstarter-btn scrolly">JOIN THE VIP LIST</a>
 				</div>
 			</div>
 
@@ -420,7 +593,8 @@
 				<ul class="icons major">
 					<li><span class="icon solid fa-palette major style1"><span class="label">Arte</span></span></li>
 					<li><span class="icon solid fa-cogs major style2"><span class="label">Ingeniería</span></span></li>
-					<li><span class="icon solid fa-hiking major style3"><span class="label">Portabilidad</span></span></li>
+					<li><span class="icon solid fa-hiking major style3"><span class="label">Portabilidad</span></span>
+					</li>
 				</ul>
 			</div>
 		</section>
@@ -431,11 +605,13 @@
 				<div class="content">
 					<h2 class="es-only">Portabilidad Extrema y Libertad Creativa</h2>
 					<h2 class="en-only">Extreme Portability and Creative Freedom</h2>
-					<p class="es-only"><strong>Cabe en cualquier bolso o mochila</strong>. Diseñada para el artista moderno que necesita
+					<p class="es-only"><strong>Cabe en cualquier bolso o mochila</strong>. Diseñada para el artista
+						moderno que necesita
 						trabajar sin límites de espacio ni costos fijos. Llevá tu taller de grabado a tu mesa de cocina,
 						un café o un parque.</p>
-					<p class="en-only"><strong>Fits in any bag or backpack</strong>. Designed for the modern artist who needs to 
-						work without space limits or fixed costs. Take your printmaking studio to your kitchen table, 
+					<p class="en-only"><strong>Fits in any bag or backpack</strong>. Designed for the modern artist who
+						needs to
+						work without space limits or fixed costs. Take your printmaking studio to your kitchen table,
 						a coffee shop, or a park.</p>
 				</div>
 			</section>
@@ -444,12 +620,16 @@
 				<div class="content">
 					<h2 class="es-only">Precisión Profesional para Técnicas Clásicas</h2>
 					<h2 class="en-only">Professional Precision for Classic Techniques</h2>
-					<p class="es-only"><strong>Compatibilidad total</strong>: Diseñada para estampar matrices de <strong>xilografía,
+					<p class="es-only"><strong>Compatibilidad total</strong>: Diseñada para estampar matrices de
+						<strong>xilografía,
 							aguafuerte y aguatinta</strong>. Sus rodillos metálicos garantizan la presión uniforme y la
-						transferencia de tinta necesaria para un acabado de nivel profesional.</p>
-					<p class="en-only"><strong>Total compatibility</strong>: Designed for printing matrices of <strong>woodcut, 
-						etching, and aquatint</strong>. Its metal rollers guarantee uniform pressure and the 
-						ink transfer necessary for a professional-level finish.</p>
+						transferencia de tinta necesaria para un acabado de nivel profesional.
+					</p>
+					<p class="en-only"><strong>Total compatibility</strong>: Designed for printing matrices of
+						<strong>woodcut,
+							etching, and aquatint</strong>. Its metal rollers guarantee uniform pressure and the
+						ink transfer necessary for a professional-level finish.
+					</p>
 				</div>
 			</section>
 			<section class="spotlight">
@@ -457,13 +637,14 @@
 				<div class="content">
 					<h2 class="es-only">Diseño Robusto y Estética Única</h2>
 					<h2 class="en-only">Robust Design and Unique Aesthetics</h2>
-					<p class="es-only">Construida con materiales de primera calidad (madera barnizada y rodillos inoxidables) para
+					<p class="es-only">Construida con materiales de primera calidad (madera barnizada y rodillos
+						inoxidables) para
 						garantizar la durabilidad. Su diseño minimalista y compacto no solo es funcional, sino que eleva
 						tu espacio de trabajo, convirtiendo a TriloGraph en una herramienta de arte que también es una
 						pieza de diseño.</p>
-					<p class="en-only">Built with premium materials (varnished wood and stainless rollers) to 
-						ensure durability. Its minimalist and compact design is not only functional but also 
-						elevates your workspace, turning TriloGraph into an art tool that is also a 
+					<p class="en-only">Built with premium materials (varnished wood and stainless rollers) to
+						ensure durability. Its minimalist and compact design is not only functional but also
+						elevates your workspace, turning TriloGraph into an art tool that is also a
 						design piece.</p>
 				</div>
 			</section>
@@ -474,58 +655,71 @@
 				<header class="major">
 					<h2 class="es-only">Expande tu Arte: Usos y Kit de Insumos</h2>
 					<h2 class="en-only">Expand Your Art: Uses and Supplies Kit</h2>
-					<p class="es-only">Trilograph es más que una prensa; es la entrada a un ecosistema de herramientas para artistas y
+					<p class="es-only">Trilograph es más que una prensa; es la entrada a un ecosistema de herramientas
+						para artistas y
 						diseñadores que valoran la calidad y la eficiencia.</p>
-					<p class="en-only">Trilograph is more than just a press; it is the entry point to an ecosystem of tools for artists and 
+					<p class="en-only">Trilograph is more than just a press; it is the entry point to an ecosystem of
+						tools for artists and
 						designers who value quality and efficiency.</p>
 				</header>
 				<ul class="features">
 					<li class="icon solid fa-print">
 						<h3 class="es-only">Grabado de Autor</h3>
 						<h3 class="en-only">Author's Printmaking</h3>
-						<p class="es-only">Perfecta para tiradas cortas y medianas, muestras de color o piezas únicas. Ideal para
+						<p class="es-only">Perfecta para tiradas cortas y medianas, muestras de color o piezas únicas.
+							Ideal para
 							artistas que venden su obra de forma directa.</p>
-						<p class="en-only">Perfect for short and medium runs, color samples, or unique pieces. Ideal for 
+						<p class="en-only">Perfect for short and medium runs, color samples, or unique pieces. Ideal for
 							artists who sell their work directly.</p>
 					</li>
 					<li class="icon solid fa-fill-drip">
 						<h3 class="es-only">Insumos de Calidad</h3>
 						<h3 class="en-only">Quality Supplies</h3>
-						<p class="es-only">Ofrecemos kits de insumos esenciales (gubias, tintura, rodillos) seleccionados por su calidad
+						<p class="es-only">Ofrecemos kits de insumos esenciales (gubias, tintura, rodillos)
+							seleccionados por su calidad
 							y compatibilidad para que empieces a crear de inmediato.</p>
-						<p class="en-only">We offer essential supply kits (gouges, ink, rollers) selected for their quality 
+						<p class="en-only">We offer essential supply kits (gouges, ink, rollers) selected for their
+							quality
 							and compatibility so you can start creating immediately.</p>
 					</li>
 					<li class="icon solid fa-cubes">
 						<h3 class="es-only">Diseño 3D y Accesorios</h3>
 						<h3 class="en-only">3D Design and Accessories</h3>
-						<p class="es-only">Accesorios de impresión 3D a la carta (soportes, marcos o guías) para optimizar el alineado y
+						<p class="es-only">Accesorios de impresión 3D a la carta (soportes, marcos o guías) para
+							optimizar el alineado y
 							la repetición de tus grabados.</p>
-						<p class="en-only">On-demand 3D printed accessories (supports, frames, or guides) to optimize the alignment and 
+						<p class="en-only">On-demand 3D printed accessories (supports, frames, or guides) to optimize
+							the alignment and
 							repetition of your prints.</p>
 					</li>
 					<li class="icon solid fa-hand-rock">
 						<h3 class="es-only">Control Total de Presión</h3>
 						<h3 class="en-only">Total Pressure Control</h3>
-						<p class="es-only">El diseño manual te permite modular la presión para adaptarla a la matriz y el tipo de papel,
+						<p class="es-only">El diseño manual te permite modular la presión para adaptarla a la matriz y
+							el tipo de papel,
 							logrando resultados únicos en cada pasada.</p>
-						<p class="en-only">The manual design allows you to modulate the pressure to adapt it to the matrix and the type of paper, 
+						<p class="en-only">The manual design allows you to modulate the pressure to adapt it to the
+							matrix and the type of paper,
 							achieving unique results in every pass.</p>
 					</li>
 					<li class="icon solid fa-globe">
 						<h3 class="es-only">Soporte Multi-Superficie</h3>
 						<h3 class="en-only">Multi-Surface Support</h3>
-						<p class="es-only">Imprime con alta fidelidad no solo en distintos tipos de papel, sino también en textiles y
+						<p class="es-only">Imprime con alta fidelidad no solo en distintos tipos de papel, sino también
+							en textiles y
 							materiales no tradicionales (ej. cuero fino).</p>
-						<p class="en-only">Print with high fidelity not only on different types of paper but also on textiles and 
+						<p class="en-only">Print with high fidelity not only on different types of paper but also on
+							textiles and
 							non-traditional materials (e.g., thin leather).</p>
 					</li>
 					<li class="icon solid fa-shield-alt">
 						<h3 class="es-only">Garantía y Durabilidad</h3>
 						<h3 class="en-only">Warranty and Durability</h3>
-						<p class="es-only">Construcción robusta en madera de alta calidad y rodillos de precisión para asegurar años de
+						<p class="es-only">Construcción robusta en madera de alta calidad y rodillos de precisión para
+							asegurar años de
 							uso sin pérdida de rendimiento.</p>
-						<p class="en-only">Robust construction in high-quality wood and precision rollers to ensure years of 
+						<p class="en-only">Robust construction in high-quality wood and precision rollers to ensure
+							years of
 							use without loss of performance.</p>
 					</li>
 				</ul>
@@ -541,23 +735,29 @@
 					<p class="en-only">Reserve yours right now.</p>
 				</header>
 				<ul class="actions stacked">
-					<li><a href="#" class="button fit primary"><span class="es-only">muy pronto...</span><span class="en-only">coming soon...</span></a></li>
-					<li><a href="https://wa.me/5491153147027?text=Hola!%20Quiero%20que%20me%20avisen%20para%20ser%20de%20los%20primeros%20en%20comprar%20el%20TRILOGRAPH"
-							class="button fit"><span class="es-only">RESERVALO YA!&nbsp;&nbsp;</span><span class="en-only">RESERVE NOW!&nbsp;&nbsp;</span></a></li>
+					<li><a href="#banner" class="button fit primary scrolly"><span class="es-only">sumarme a la lista...</span><span
+								class="en-only">join the list...</span></a></li>
+					<li><a href="#banner" class="button fit scrolly"><span class="es-only">RESERVALO YA!&nbsp;&nbsp;</span><span
+								class="en-only">RESERVE NOW!&nbsp;&nbsp;</span></a></li>
 				</ul>
 			</div>
 		</section>
 
 		<footer id="footer">
 			<ul class="icons">
-				<li><a href="https://instagram.com/trilograph" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="https://instagram.com/trilograph" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-				<li><a href="https://instagram.com/trilograph" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-				<li><a href="mailto:contacto@trilograph.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				<li><a href="https://instagram.com/trilograph" class="icon brands fa-twitter"><span
+							class="label">Twitter</span></a></li>
+				<li><a href="https://instagram.com/trilograph" class="icon brands fa-facebook-f"><span
+							class="label">Facebook</span></a></li>
+				<li><a href="https://instagram.com/trilograph" class="icon brands fa-instagram"><span
+							class="label">Instagram</span></a></li>
+				<li><a href="mailto:contacto@trilograph.com" class="icon solid fa-envelope"><span
+							class="label">Email</span></a></li>
 			</ul>
 			<ul class="copyright">
 				<li>&copy; Trilograph.</li>
-				<li><a href="http://trilograph.com">&nbsp;<span class="es-only">por</span><span class="en-only">by</span> </a><a
+				<li><a href="http://trilograph.com">&nbsp;<span class="es-only">por</span><span
+							class="en-only">by</span> </a><a
 						href="https://inventosargentinos.com">inventosargentinos.com</a></li>
 			</ul>
 		</footer>
@@ -572,7 +772,10 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/i18n.js"></script>
-
+	<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+	<script type="text/javascript">
+		(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[4] = 'PHONE'; ftypes[4] = 'phone'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'ADDRESS'; ftypes[3] = 'address'; fnames[5] = 'BIRTHDAY'; ftypes[5] = 'birthday'; fnames[6] = 'COMPANY'; ftypes[6] = 'text'; }(jQuery)); var $mcj = jQuery.noConflict(true);
+	</script>
 </body>
 
 </html>
