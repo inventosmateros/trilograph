@@ -446,22 +446,24 @@
 		}
 	</style>
 	<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '964679599266952');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=964679599266952&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+	<script>
+		!function (f, b, e, v, n, t, s) {
+			if (f.fbq) return; n = f.fbq = function () {
+				n.callMethod ?
+				n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+			};
+			if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+			n.queue = []; t = b.createElement(e); t.async = !0;
+			t.src = v; s = b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t, s)
+		}(window, document, 'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '964679599266952');
+		fbq('track', 'PageView');
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+			src="https://www.facebook.com/tr?id=964679599266952&ev=PageView&noscript=1" /></noscript>
+	<!-- End Meta Pixel Code -->
 </head>
 
 <body class="landing is-preload">
@@ -529,6 +531,9 @@ src="https://www.facebook.com/tr?id=964679599266952&ev=PageView&noscript=1"
 								<input type="text" name="PHONE" class="REQ_CSS" id="mce-PHONE" value="">
 								<span id="mce-PHONE-HELPERTEXT" class="helper_text">Country code + full number</span>
 							</div>
+
+							<input type="hidden" name="LNAME" id="mce-LNAME" value="">
+
 
 							<div id="mce-responses" class="clear foot">
 								<div class="response" id="mce-error-response" style="display: none;"></div>
@@ -786,10 +791,10 @@ src="https://www.facebook.com/tr?id=964679599266952&ev=PageView&noscript=1"
 					<p class="en-only">Reserve yours right now.</p>
 				</header>
 				<ul class="actions stacked">
-					<li><a href="#banner" class="button fit primary scrolly"><span class="es-only">sumarme a la lista...</span><span
-								class="en-only">join the list...</span></a></li>
-					<li><a href="#banner" class="button fit scrolly"><span class="es-only">RESERVALO YA!&nbsp;&nbsp;</span><span
-								class="en-only">RESERVE NOW!&nbsp;&nbsp;</span></a></li>
+					<li><a href="#banner" class="button fit primary scrolly"><span class="es-only">sumarme a la
+								lista...</span><span class="en-only">join the list...</span></a></li>
+					<li><a href="#banner" class="button fit scrolly"><span class="es-only">RESERVALO
+								YA!&nbsp;&nbsp;</span><span class="en-only">RESERVE NOW!&nbsp;&nbsp;</span></a></li>
 				</ul>
 			</div>
 		</section>
@@ -838,16 +843,32 @@ src="https://www.facebook.com/tr?id=964679599266952&ev=PageView&noscript=1"
 					geoIpLookup: function (callback) {
 						fetch("https://ipapi.co/json")
 							.then(res => res.json())
-							.then(data => callback(data.country_code))
+							.then(data => {
+								callback(data.country_code);
+								// Guardar país automáticamente desde la IP al cargar la página
+								const lnameInput = document.getElementById("mce-LNAME");
+								if (lnameInput) {
+									lnameInput.value = data.country_name || data.country_code;
+								}
+							})
 							.catch(() => callback("ar"));
 					},
 					utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/js/utils.js"
 				});
 
+				// Si el usuario cambia el país en el desplegable, actualizamos el campo oculto
+				phoneInput.addEventListener('countrychange', function () {
+					const countryData = iti.getSelectedCountryData();
+					const lnameInput = document.getElementById("mce-LNAME");
+					if (lnameInput && countryData && countryData.name) {
+						lnameInput.value = countryData.name;
+					}
+				});
+
 				// Before submit, ensure the hidden field or the field itself has the full number if needed
 				// Mailchimp phone fields can be tricky, but usually they just want the string.
 				// We'll update the field to the full number on blur to be safe.
-				phoneInput.addEventListener('blur', function() {
+				phoneInput.addEventListener('blur', function () {
 					if (iti.isValidNumber()) {
 						phoneInput.value = iti.getNumber();
 					}
