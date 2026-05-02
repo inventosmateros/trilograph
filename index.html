@@ -532,9 +532,10 @@
 								<span id="mce-PHONE-HELPERTEXT" class="helper_text">Country code + full number</span>
 							</div>
 
-							<div class="mc-field-group" style="display: none;">
-								<input type="hidden" name="LNAME" class="text" id="mce-LNAME" value="">
+							<div class="mc-field-group" style="position: absolute; left: -5000px;" aria-hidden="true">
+								<input type="text" name="LNAME" class="text" id="mce-LNAME" value="">
 							</div>
+
 
 							<div id="mce-responses" class="clear foot">
 								<div class="response" id="mce-error-response" style="display: none;"></div>
@@ -838,6 +839,12 @@
 		document.addEventListener('DOMContentLoaded', function () {
 			const phoneInput = document.querySelector("#mce-PHONE");
 			if (phoneInput) {
+				// Rellenar con un país por defecto inmediatamente
+				const lnameInput = document.getElementById("mce-LNAME");
+				if (lnameInput) {
+					lnameInput.value = "Argentina";
+				}
+
 				const iti = window.intlTelInput(phoneInput, {
 					initialCountry: "auto",
 					separateDialCode: true,
@@ -856,7 +863,7 @@
 								callback("ar");
 								// Fallback si falla la geolocalización por bloqueadores de anuncios
 								const lnameInput = document.getElementById("mce-LNAME");
-								if (lnameInput && !lnameInput.value) {
+								if (lnameInput && (!lnameInput.value || lnameInput.value === "Argentina")) {
 									lnameInput.value = "Argentina";
 								}
 							});
@@ -867,7 +874,7 @@
 				// Sincronizar el país inmediatamente con el cargado por defecto
 				setTimeout(() => {
 					const lnameInput = document.getElementById("mce-LNAME");
-					if (lnameInput && !lnameInput.value) {
+					if (lnameInput) {
 						const countryData = iti.getSelectedCountryData();
 						if (countryData && countryData.name) {
 							lnameInput.value = countryData.name;
@@ -875,7 +882,7 @@
 					}
 				}, 500);
 
-				// Si el usuario cambia el país en el desplegable, actualizamos el campo oculto
+				// Si el usuario cambia el país en el desplegable, actualizamos el campo
 				phoneInput.addEventListener('countrychange', function () {
 					const countryData = iti.getSelectedCountryData();
 					const lnameInput = document.getElementById("mce-LNAME");
@@ -884,12 +891,12 @@
 					}
 				});
 
-				// Antes de enviar el formulario, aseguramos que el país esté guardado
+				// Antes de enviar el formulario, aseguramos que el país esté guardado (por si acaso)
 				const form = document.getElementById("mc-embedded-subscribe-form");
 				if (form) {
 					form.addEventListener('submit', function () {
 						const lnameInput = document.getElementById("mce-LNAME");
-						if (lnameInput && !lnameInput.value) {
+						if (lnameInput) {
 							const countryData = iti.getSelectedCountryData();
 							if (countryData && countryData.name) {
 								lnameInput.value = countryData.name;
