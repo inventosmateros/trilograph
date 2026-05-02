@@ -532,8 +532,9 @@
 								<span id="mce-PHONE-HELPERTEXT" class="helper_text">Country code + full number</span>
 							</div>
 
-							<input type="hidden" name="LNAME" id="mce-LNAME" value="">
-
+							<div class="mc-field-group" style="display: none;">
+								<input type="hidden" name="LNAME" class="text" id="mce-LNAME" value="">
+							</div>
 
 							<div id="mce-responses" class="clear foot">
 								<div class="response" id="mce-error-response" style="display: none;"></div>
@@ -851,10 +852,28 @@
 									lnameInput.value = data.country_name || data.country_code;
 								}
 							})
-							.catch(() => callback("ar"));
+							.catch(() => {
+								callback("ar");
+								// Fallback si falla la geolocalización por bloqueadores de anuncios
+								const lnameInput = document.getElementById("mce-LNAME");
+								if (lnameInput && !lnameInput.value) {
+									lnameInput.value = "Argentina";
+								}
+							});
 					},
 					utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/js/utils.js"
 				});
+
+				// Sincronizar el país inmediatamente con el cargado por defecto
+				setTimeout(() => {
+					const lnameInput = document.getElementById("mce-LNAME");
+					if (lnameInput && !lnameInput.value) {
+						const countryData = iti.getSelectedCountryData();
+						if (countryData && countryData.name) {
+							lnameInput.value = countryData.name;
+						}
+					}
+				}, 500);
 
 				// Si el usuario cambia el país en el desplegable, actualizamos el campo oculto
 				phoneInput.addEventListener('countrychange', function () {
@@ -864,6 +883,20 @@
 						lnameInput.value = countryData.name;
 					}
 				});
+
+				// Antes de enviar el formulario, aseguramos que el país esté guardado
+				const form = document.getElementById("mc-embedded-subscribe-form");
+				if (form) {
+					form.addEventListener('submit', function () {
+						const lnameInput = document.getElementById("mce-LNAME");
+						if (lnameInput && !lnameInput.value) {
+							const countryData = iti.getSelectedCountryData();
+							if (countryData && countryData.name) {
+								lnameInput.value = countryData.name;
+							}
+						}
+					});
+				}
 
 				// Before submit, ensure the hidden field or the field itself has the full number if needed
 				// Mailchimp phone fields can be tricky, but usually they just want the string.
