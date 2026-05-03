@@ -403,6 +403,60 @@
 			background-color: #ef5a46 !important;
 		}
 
+		/* Floating Kickstarter button styles */
+		#mc_embed_signup .kickstarter-submit-btn {
+			width: 100%;
+			margin-top: 20px;
+			background: linear-gradient(135deg, #05ce78 0%, #039e5b 100%) !important;
+			color: white !important;
+			border: none !important;
+			border-radius: 8px !important;
+			height: auto !important;
+			min-height: 4em !important;
+			font-weight: 800 !important;
+			font-size: 1.1em !important;
+			letter-spacing: 1px !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			gap: 12px !important;
+			text-transform: uppercase !important;
+			box-shadow: 0 4px 15px rgba(5, 206, 120, 0.4) !important;
+			cursor: pointer !important;
+			transition: all 0.3s ease !important;
+			animation: floatingButton 3s ease-in-out infinite alternate !important;
+			padding: 0 20px !important;
+		}
+
+		#mc_embed_signup .kickstarter-submit-btn:hover {
+			background: linear-gradient(135deg, #04b368 0%, #038a4e 100%) !important;
+			box-shadow: 0 6px 20px rgba(5, 206, 120, 0.6) !important;
+			transform: scale(1.02) !important;
+		}
+
+		#mc_embed_signup .kickstarter-submit-btn:active {
+			transform: scale(0.98) !important;
+			box-shadow: 0 3px 10px rgba(5, 206, 120, 0.3) !important;
+		}
+
+		#mc_embed_signup .kickstarter-logo-btn {
+			height: 24px !important;
+			width: auto !important;
+			display: inline-block !important;
+			vertical-align: middle !important;
+		}
+
+		@keyframes floatingButton {
+			0% {
+				transform: translateY(0);
+				box-shadow: 0 4px 15px rgba(5, 206, 120, 0.4) !important;
+			}
+			100% {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 25px rgba(5, 206, 120, 0.6) !important;
+			}
+		}
+
 		#mc_embed_signup .asterisk {
 			color: #ed4933;
 		}
@@ -557,8 +611,10 @@
 
 							<div class="optionalParent">
 								<div class="clear foot">
-									<input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button"
-										value="SUBSCRIBE">
+									<button type="submit" name="subscribe" id="mc-embedded-subscribe" class="button kickstarter-submit-btn">
+										<img src="images/kickstarter.png" class="kickstarter-logo-btn" alt="Kickstarter Logo">
+										Notify me on Launch
+									</button>
 								</div>
 							</div>
 						</div>
