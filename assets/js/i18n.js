@@ -71,7 +71,7 @@ function initI18n() {
 
 // Countdown Timer
 function startCountdown() {
-    const targetDate = new Date("May 5, 2026 00:00:00").getTime();
+    const targetDate = new Date("May 14, 2026 00:00:00").getTime();
     
     const timer = setInterval(function() {
         const now = new Date().getTime();
