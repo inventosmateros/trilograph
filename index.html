@@ -451,6 +451,7 @@
 				transform: translateY(0);
 				box-shadow: 0 4px 15px rgba(5, 206, 120, 0.4) !important;
 			}
+
 			100% {
 				transform: translateY(-5px);
 				box-shadow: 0 10px 25px rgba(5, 206, 120, 0.6) !important;
@@ -504,8 +505,40 @@
 			border-top-color: #888 !important;
 		}
 
-		.iti__arrow--up {
-			border-bottom-color: #888 !important;
+		/* WhatsApp Float */
+		.whatsapp-float {
+			position: fixed;
+			width: 60px;
+			height: 60px;
+			bottom: 40px;
+			left: 40px;
+			background-color: #25d366;
+			color: #FFF !important;
+			border-radius: 50px;
+			font-size: 35px;
+			box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+			z-index: 1000;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none !important;
+			transition: all 0.3s ease;
+			border-bottom: none !important;
+		}
+
+		.whatsapp-float:hover {
+			background-color: #128C7E;
+			transform: scale(1.1);
+		}
+
+		@media screen and (max-width: 736px) {
+			.whatsapp-float {
+				width: 50px;
+				height: 50px;
+				bottom: 20px;
+				left: 20px;
+				font-size: 30px;
+			}
 		}
 	</style>
 	<!-- Meta Pixel Code -->
@@ -530,6 +563,14 @@
 </head>
 
 <body class="landing is-preload">
+
+	<!-- WhatsApp Float Buttons -->
+	<a href="https://wa.me/5491153147027?text=Hola%20TRILOGRAPH%20tengo%20una%20consulta" class="whatsapp-float es-only" target="_blank">
+		<span class="icon brands fa-whatsapp"></span>
+	</a>
+	<a href="https://wa.me/5491153147027?text=Hello%20Trilograph%20Team%20I%20have%20a%20question" class="whatsapp-float en-only" target="_blank">
+		<span class="icon brands fa-whatsapp"></span>
+	</a>
 
 	<div id="page-wrapper">
 
@@ -611,8 +652,10 @@
 
 							<div class="optionalParent">
 								<div class="clear foot">
-									<button type="submit" name="subscribe" id="mc-embedded-subscribe" class="button kickstarter-submit-btn">
-										<img src="images/kickstarter.png" class="kickstarter-logo-btn" alt="Kickstarter Logo">
+									<button type="submit" name="subscribe" id="mc-embedded-subscribe"
+										class="button kickstarter-submit-btn">
+										<img src="images/kickstarter.png" class="kickstarter-logo-btn"
+											alt="Kickstarter Logo">
 										Notify me on Launch
 									</button>
 								</div>
