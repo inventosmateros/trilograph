@@ -69,40 +69,6 @@ function initI18n() {
     setLanguage(defaultLang);
 }
 
-// Countdown Timer
-function startCountdown() {
-    const targetDate = new Date("May 20, 2026 15:30:00").getTime();
-    
-    const timer = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-        
-        const countdownEl = document.getElementById("countdown");
-        if (!countdownEl) return;
-
-        if (distance < 0) {
-            clearInterval(timer);
-            countdownEl.innerHTML = "LAUNCHED!";
-            return;
-        }
-        
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        
-        const isEn = document.body.classList.contains('lang-en');
-        const labels = isEn ? ['days', 'hours', 'minutes'] : ['días', 'horas', 'minutos'];
-        
-        countdownEl.innerHTML = `
-            <div class="countdown-item"><span class="number">${days}</span><span class="label">${labels[0]}</span></div>
-            <div class="countdown-item"><span class="number">${hours}</span><span class="label">${labels[1]}</span></div>
-            <div class="countdown-item"><span class="number">${minutes}</span><span class="label">${labels[2]}</span></div>
-        `;
-
-    }, 1000);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     initI18n();
-    startCountdown();
 });
