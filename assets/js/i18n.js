@@ -22,8 +22,8 @@ function updateMailchimpLabels(lang) {
     if (!form) return;
 
     const labels = {
-        title: isEn ? 'KICKSTARTER VIP WAITING LIST' : 'LISTA DE ESPERA VIP KICKSTARTER',
-        desc: isEn ? 'We will let you know 15 minutes before we launch the campaign so you can get one of the first units with extra discount.' : 'Te avisaremos 15 minutos antes del lanzamiento para que asegures una de las primeras unidades con descuento extra.',
+        title: isEn ? 'TRILOGRAPH NEWSLETTER' : 'NOVEDADES TRILOGRAPH',
+        desc: isEn ? 'Subscribe to receive the latest updates and special offers.' : 'Suscribite para recibir las últimas novedades y ofertas especiales.',
         email: isEn ? 'Email Address' : 'Correo Electrónico',
         name: isEn ? 'First Name' : 'Nombre',
         phone: isEn ? 'Whatsapp' : 'Whatsapp',
