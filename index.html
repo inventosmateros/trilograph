@@ -257,57 +257,85 @@
 			display: none !important;
 		}
 
-		/* Countdown Timer styles */
-		.kickstarter-banner {
+		/* Buy Banner styles */
+		.kickstarter-banner,
+		.buy-banner {
 			margin-top: 40px;
-			padding: 40px;
+			padding: 40px 20px;
 			background: rgba(255, 255, 255, 0.05);
 			border: 1px solid rgba(255, 255, 255, 0.1);
 			border-radius: 20px;
 			backdrop-filter: blur(10px);
+			text-align: center;
 		}
 
-		.countdown-container {
-			display: flex;
-			justify-content: center;
-			gap: 30px;
-			margin: 30px 0;
-		}
-
-		.countdown-item {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-
-		.countdown-item .number {
-			font-size: 3em;
-			font-weight: 800;
-			line-height: 1;
-			color: #fff;
-		}
-
-		.countdown-item .label {
-			font-size: 0.8em;
-			text-transform: uppercase;
-			letter-spacing: 2px;
-			color: #aaa;
-			margin-top: 10px;
-		}
-
-		.kickstarter-btn {
+		.buy-now-btn {
 			font-weight: 800 !important;
 			letter-spacing: 2px !important;
 			padding: 0 3em !important;
 			height: 4em !important;
 			line-height: 4em !important;
-			background-color: #05ce78 !important;
-			/* Kickstarter Green */
-			box-shadow: inset 0 0 0 2px #05ce78 !important;
+			background: linear-gradient(135deg, #635bff 0%, #6f42c1 100%) !important;
+			color: #ffffff !important;
+			box-shadow: 0 4px 20px rgba(99, 91, 255, 0.4) !important;
+			border: none !important;
+			border-radius: 8px;
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			gap: 10px;
+			text-transform: uppercase !important;
+			transition: all 0.3s ease !important;
+			font-size: 1.1em !important;
+			text-decoration: none !important;
 		}
 
-		.kickstarter-btn:hover {
-			background-color: #04b368 !important;
+		.buy-now-btn:hover {
+			background: linear-gradient(135deg, #534be0 0%, #5a32a3 100%) !important;
+			box-shadow: 0 6px 25px rgba(99, 91, 255, 0.6) !important;
+			transform: translateY(-2px);
+			color: #ffffff !important;
+		}
+
+		.shipping-quote-container {
+			margin-top: 25px;
+		}
+
+		.shipping-quote-note {
+			font-size: 1em;
+			color: #ddd;
+			margin: 0;
+			line-height: 1.6;
+		}
+
+		.whatsapp-quote-link {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			color: #25d366 !important;
+			font-weight: 700;
+			text-decoration: none !important;
+			border-bottom: 1px dashed #25d366 !important;
+			transition: all 0.3s ease;
+			padding-bottom: 2px;
+			margin-top: 6px;
+		}
+
+		.whatsapp-quote-link:hover {
+			color: #128c7e !important;
+			border-bottom-color: #128c7e !important;
+			transform: translateY(-1px);
+		}
+
+		@media screen and (max-width: 736px) {
+			.buy-banner {
+				padding: 25px 15px;
+			}
+			.buy-now-btn {
+				width: 100%;
+				padding: 0 1em !important;
+				font-size: 1em !important;
+			}
 		}
 
 		/* Fix for banner height with large form */
@@ -403,16 +431,16 @@
 			background-color: #ef5a46 !important;
 		}
 
-		/* Floating Kickstarter button styles */
-		#mc_embed_signup .kickstarter-submit-btn {
+		/* Floating Submit button styles */
+		#mc_embed_signup .newsletter-submit-btn {
 			width: 100%;
 			margin-top: 20px;
-			background: linear-gradient(135deg, #05ce78 0%, #039e5b 100%) !important;
+			background: linear-gradient(135deg, #ed4933 0%, #d43722 100%) !important;
 			color: white !important;
 			border: none !important;
 			border-radius: 8px !important;
 			height: auto !important;
-			min-height: 4em !important;
+			min-height: 3.5em !important;
 			font-weight: 800 !important;
 			font-size: 1.1em !important;
 			letter-spacing: 1px !important;
@@ -421,29 +449,21 @@
 			justify-content: center !important;
 			gap: 12px !important;
 			text-transform: uppercase !important;
-			box-shadow: 0 4px 15px rgba(5, 206, 120, 0.4) !important;
+			box-shadow: 0 4px 15px rgba(237, 73, 51, 0.4) !important;
 			cursor: pointer !important;
 			transition: all 0.3s ease !important;
-			animation: floatingButton 3s ease-in-out infinite alternate !important;
 			padding: 0 20px !important;
 		}
 
-		#mc_embed_signup .kickstarter-submit-btn:hover {
-			background: linear-gradient(135deg, #04b368 0%, #038a4e 100%) !important;
-			box-shadow: 0 6px 20px rgba(5, 206, 120, 0.6) !important;
+		#mc_embed_signup .newsletter-submit-btn:hover {
+			background: linear-gradient(135deg, #ef5a46 0%, #ed4933 100%) !important;
+			box-shadow: 0 6px 20px rgba(237, 73, 51, 0.6) !important;
 			transform: scale(1.02) !important;
 		}
 
-		#mc_embed_signup .kickstarter-submit-btn:active {
+		#mc_embed_signup .newsletter-submit-btn:active {
 			transform: scale(0.98) !important;
-			box-shadow: 0 3px 10px rgba(5, 206, 120, 0.3) !important;
-		}
-
-		#mc_embed_signup .kickstarter-logo-btn {
-			height: 24px !important;
-			width: auto !important;
-			display: inline-block !important;
-			vertical-align: middle !important;
+			box-shadow: 0 3px 10px rgba(237, 73, 51, 0.3) !important;
 		}
 
 		@keyframes floatingButton {
@@ -615,9 +635,8 @@
 						method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
 						target="_blank">
 						<div id="mc_embed_signup_scroll">
-							<h2>KICKSTARTER VIP WAITING LIST</h2>
-							<p class="form-description">We will let you know 15 minutes before we launch the campaign so
-								you can get one of the first units with extra discount.</p>
+							<h2>TRILOGRAPH NEWSLETTER</h2>
+							<p class="form-description">Subscribe to receive the latest updates and special offers.</p>
 
 							<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
 
@@ -653,10 +672,8 @@
 							<div class="optionalParent">
 								<div class="clear foot">
 									<button type="submit" name="subscribe" id="mc-embedded-subscribe"
-										class="button kickstarter-submit-btn">
-										<img src="images/kickstarter.png" class="kickstarter-logo-btn"
-											alt="Kickstarter Logo">
-										Notify me on Launch
+										class="button newsletter-submit-btn">
+										Subscribe
 									</button>
 								</div>
 							</div>
@@ -721,7 +738,7 @@
 					<!-- Boton 4 -->
 					<div class="pricing-card">
 						<div class="card-badge int-badge">Internacional</div>
-						<h3>Kickstarter</h3>
+						<h3>Internacional</h3>
 						<div class="price" style="margin-top: 10px; margin-bottom: 10px;">
 							<span class="new-price" style="font-size: 1.3em;">Internacionales</span>
 						</div>
@@ -729,18 +746,34 @@
 						<ul class="card-details">
 							<li>Exclusivo para ventas al exterior</li>
 						</ul>
-						<a href="https://www.kickstarter.com/projects/trilograph/trilograph-professional-printmaking-anywhere" target="_blank" class="button primary fit int-button">Apoyanos en Kickstarter</a>
+						<a href="https://buy.stripe.com/dRm6oGb80eYn80hbEP3VC00" target="_blank" class="button primary fit int-button">
+							<span class="es-only">COMPRAR</span>
+							<span class="en-only">BUY NOW</span>
+						</a>
 					</div>
 				</div>
 
-				<!-- Kickstarter Section -->
-				<div class="kickstarter-banner">
-					<p class="global-phrase es-only">Trilograph ya está en Kickstarter.</p>
-					<p class="global-phrase en-only">Trilograph is live on Kickstarter.</p>
-					<a href="https://www.kickstarter.com/projects/trilograph/trilograph-professional-printmaking-anywhere" target="_blank" class="button primary large kickstarter-btn">
-						<span class="es-only">APOYANOS EN KICKSTARTER</span>
-						<span class="en-only">SUPPORT US ON KICKSTARTER</span>
+				<!-- Buy Now Section -->
+				<div class="buy-banner">
+					<a href="https://buy.stripe.com/dRm6oGb80eYn80hbEP3VC00" target="_blank" class="button primary large buy-now-btn">
+						<i class="fas fa-shopping-cart"></i>
+						<span class="es-only">COMPRAR</span>
+						<span class="en-only">BUY NOW</span>
 					</a>
+					<div class="shipping-quote-container">
+						<p class="shipping-quote-note es-only">
+							Consultar el precio con envío internacional por FedEx puerta a puerta<br>
+							<a href="https://wa.me/5491153147027?text=Hola%20TRILOGRAPH!%20Quisiera%20pedir%20la%20cotizaci%C3%B3n%20final%20con%20env%C3%ADo%20internacional%20por%20FedEx%20puerta%20a%20puerta." target="_blank" class="whatsapp-quote-link">
+								<i class="fab fa-whatsapp"></i> Cotizar por Whatsapp
+							</a>
+						</p>
+						<p class="shipping-quote-note en-only">
+							Check the final price with international door-to-door FedEx shipping<br>
+							<a href="https://wa.me/5491153147027?text=Hello%20Trilograph!%20I%20would%20like%20to%20get%20a%20final%20quote%20including%20international%20door-to-door%20FedEx%20shipping." target="_blank" class="whatsapp-quote-link">
+								<i class="fab fa-whatsapp"></i> Get final quote by WhatsApp
+							</a>
+						</p>
+					</div>
 				</div>
 			</div>
 
